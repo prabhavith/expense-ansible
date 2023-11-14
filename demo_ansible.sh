@@ -1,5 +1,5 @@
 - name: Ansible PING play
-  hosts: 172.31.41.217
+  hosts: all
   tasks:
    - name: Ping task
      ansible.builtin.ping:
