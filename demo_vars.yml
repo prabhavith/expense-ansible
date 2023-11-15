@@ -1,3 +1,4 @@
+# we can store variable value at play level, task level or from command line. The precedence order is CLI, task level, play level
 - name: Demo on vars
   hosts: localhost
   vars:
@@ -9,3 +10,16 @@
         city: Ayodhya
       ansible.builtin.debug:
         msg: "{{ name }} is {{ age }} years young, lives in {{ city }} "
+
+
+#we can get task output stored in a variable
+
+- name: store task output
+  hosts: all
+  tasks:
+    - name: store users data
+      ansible.builtin.shell: cat /etc/passwd | tail
+      register: users
+    - name: print users data
+      ansible.builtin.debug:
+        msg: "The list of users are {{ users }}"
