@@ -43,6 +43,8 @@
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
         dest: /usr/share/nginx/html
+        remote_src: yes
+
 
     #rm /etc/nginx/default.d/expense.conf
     - name: Remove expense.conf file
