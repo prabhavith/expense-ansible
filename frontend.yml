@@ -17,7 +17,7 @@
       ansible.builtin.service:
         name: nginx
         enabled: true
-        state: start
+        state: started
 
     #rm -rf /usr/share/nginx/html/*
     - name: Remove default nginx data
