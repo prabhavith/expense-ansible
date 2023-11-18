@@ -1,0 +1,70 @@
+#dnf module disable nodejs -y
+#dnf module enable nodejs:18 -y
+- name: enable nodejs-18
+  ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
+
+- name: Install nodejs-18
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: Remove expense user if exists
+  ansible.builtin.user:
+    name: expense
+    state: absent
+    remove: yes
+
+- name: create expense user
+  ansible.builtin.user:
+    name: expense
+
+- name: remove /app directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: create /app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Download application code
+  ansible.builtin.get_url:
+    url: https://expense-artifacts.s3.amazonaws.com/backend.zip
+    dest: /tmp/backend.zip
+
+- name: Unzip application code
+  ansible.builtin.unarchive:
+    src: /tmp/backend.zip
+    dest: /app
+    remote_src: yes
+
+- name: npm install
+  ansible.builtin.shell:
+    cmd: npm install
+    chdir: /app
+
+- name: copy backend.service
+  ansible.builtin.copy:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+- name: install mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: load schema
+  ansible.builtin.shell: mysql -h mysql-dev.moderayprime.online -uroot -p{{ MYSQL_ROOT_PASSWORD }} < /app/schema/backend.sql
+
+- name: start backend.service
+  ansible.builtin.systemd_service:
+    name: backend
+    daemon_reload: true #daemon-reload to be done to reload systemd files
+    enabled: true
+    state: started
+
+- name: Restart backend.service
+  ansible.builtin.systemd_service:
+    name: backend
+    state: restarted

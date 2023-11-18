@@ -1,0 +1,4 @@
+- name: Deplying expense with roles
+  hosts: all
+  roles:
+    - {{ tier }}
