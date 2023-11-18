@@ -56,6 +56,8 @@
 
 - name: load schema
   ansible.builtin.shell: mysql -h mysql-dev.moderayprime.online -uroot -p{{ MYSQL_ROOT_PASSWORD }} < /app/schema/backend.sql
+  tags:
+    - schema
 
 - name: start backend.service
   ansible.builtin.systemd_service:
@@ -63,8 +65,12 @@
     daemon_reload: true #daemon-reload to be done to reload systemd files
     enabled: true
     state: started
+    tags:
+      - start
 
 - name: Restart backend.service
   ansible.builtin.systemd_service:
     name: backend
     state: restarted
+    tags:
+      - restart
