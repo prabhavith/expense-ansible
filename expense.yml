@@ -1,4 +1,5 @@
 - name: Deplying expense with roles
   hosts: all
+  become: yes
   roles:
     - "{{ tier }}"
