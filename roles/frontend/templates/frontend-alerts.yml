@@ -1,0 +1,12 @@
+groups:
+  - name: {{ env }}-environment
+    rules:
+      - alert: Not reachable
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          #label1 : abc
+          #label2 :xyz and so on
+        annotations:
+          summary: {{ component }} is down.

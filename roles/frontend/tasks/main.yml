@@ -66,3 +66,10 @@
   ansible.builtin.service:
     name: nginx
     state: restarted
+
+- name: upload alerts file to s3
+  amazon.aws.s3_object:
+    bucket: prometheusalerts
+    object: frontend-alerts.yml
+    src: frontend-alerts.yml
+    mode: put
