@@ -9,4 +9,4 @@ groups:
           #label1 : abc
           #label2 :xyz and so on
         annotations:
-          summary: Server is down
+          summary: Server is down.

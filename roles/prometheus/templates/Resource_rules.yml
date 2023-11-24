@@ -12,5 +12,5 @@ groups:
         annotations:
           summary: "Ram is high"
           #summary: "Ram of  {{ $labels.instance }} is high"
-          #description: "Ram consumption of {{ $labels.instance }} is at {{$value}} percentage"
+          #description: "Ram consumption of {{ $labels.instance }} is at {{$value}} percentage."
           {% endraw %}
