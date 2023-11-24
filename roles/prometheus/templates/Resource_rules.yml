@@ -6,7 +6,7 @@ groups:
         for: 1m
         labels:
           severity: warning
+          {% raw %}
         annotations:
-          summary: "Ram of {% raw %} {{ $labels.instance }} {% endraw %} is high"
-#description: "RAM consumption in {% raw %} {{ $labels.instance }} {% endraw %} is high at {{$value}} percentage for more than 1min"
-
+          summary: "Ram of  {{ $labels.instance }} is high"
+          {% endraw %}
