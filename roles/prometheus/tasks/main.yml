@@ -7,3 +7,8 @@
   ansible.builtin.template:
     src: Health_rules.yml
     dest: /opt/prometheus/Health_rules.yml
+
+- name: copy rules
+  ansible.builtin.template:
+    src: Resource_rules.yml
+    dest: /opt/prometheus/Resource_rules.yml

@@ -1,0 +1,12 @@
+groups:
+  - name: Resource consumption
+    rules:
+      - alert: Ram high
+        expr: (node_memory_MemFree_bytes / node_memory_MemTotal_bytes) * 100 > 50
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Ram of {{ $labels.instance }} is high"
+          description: "RAM consumption in {{ $labels.instance }} is high at {{$value}} percentage for more than 1min"
+
