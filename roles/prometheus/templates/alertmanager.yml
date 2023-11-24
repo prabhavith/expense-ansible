@@ -3,9 +3,9 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
-  receiver: 'web.hook'
+  receiver: 'Amazon-SNS'
 receivers:
-  - name: 'Amazon SNS'
+  - name: 'Amazon-SNS'
     sns_configs:
       - topic_arn: arn:aws:sns:us-east-1:180933357369:Prometheus-alertmanager
         subject: "frontend health"
