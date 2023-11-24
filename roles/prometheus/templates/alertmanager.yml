@@ -7,7 +7,7 @@ route:
 receivers:
   - name: 'Amazon-SNS'
     sns_configs:
-      - sigv4_config:
+      - sigv4_configs:
           region: us-east-1
         topic_arn: arn:aws:sns:us-east-1:180933357369:Prometheus-alertmanager
         subject: "frontend health"
