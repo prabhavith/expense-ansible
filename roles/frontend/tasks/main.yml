@@ -67,10 +67,15 @@
     name: nginx
     state: restarted
 
+- name: copy frontend alerts file to frontend server to be get recognized by s3 module src attribute
+  ansible.builtin.template:
+    src: frontend-alerts.yml
+    dest: /tmp/frontend-alerts.yml
+
 - name: upload alerts file to s3
   amazon.aws.s3_object:
     bucket: prometheusalerts
     object: frontend-alerts.yml
-    src: frontend-alerts.yml
+    src: /tmp/frontend-alerts.yml
     mode: put
   tags: s3
