@@ -7,6 +7,6 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "Ram of {{ $labels.instance }} is high"
-          description: "RAM consumption in {{ $labels.instance }} is high at {{$value}} percentage for more than 1min"
+          summary: "Ram of {% raw %} {{ $labels.instance }} {% endraw %} is high"
+          #description: "RAM consumption in {% raw %} {{ $labels.instance }} {% endraw %} is high at {{$value}} percentage for more than 1min"
 
