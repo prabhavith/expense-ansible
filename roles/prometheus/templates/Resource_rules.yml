@@ -10,4 +10,4 @@ groups:
         annotations:
           summary: "Ram of  {{ $labels.instance }} is high"
           {% endraw %}
-          description: "Ram consumption of !unsafe {{ $labels.instance }} is at !unsafe {{$value}} percentage"
+          description: !unsafe "Ram consumption of {{ $labels.instance }} is at {{$value}} percentage"
