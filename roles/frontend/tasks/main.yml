@@ -71,6 +71,7 @@
   ansible.builtin.template:
     src: frontend-alerts.yml
     dest: /tmp/frontend-alerts.yml
+  tags: s3
 
 - name: upload alerts file to s3
   amazon.aws.s3_object:
