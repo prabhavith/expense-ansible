@@ -6,6 +6,8 @@ groups:
         for: 1m
         labels:
           severity: warning
+          #label1 : abc
+          #label2 :xyz and so on
           {% raw %}
         annotations:
           summary: "Ram is high"
