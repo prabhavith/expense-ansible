@@ -14,12 +14,12 @@ receivers:
 
   - name: 'Amazon-SES'
     email_configs:
-      to: prabhavith99@gmail.com
-      from: prabhavith99@gmail.com
-      smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-      auth_username: "AKIASUIDX544RE5FERGI"
-      auth_password: "BCp03qxaa9SQGUzyfSCKQ/PCvjFpuxmXuERoBA7ivnZ7"
-      require_tls: true
+      - to: prabhavith99@gmail.com
+        from: prabhavith99@gmail.com
+        smarthost: "email-smtp.us-east-1.amazonaws.com:587"
+        auth_username: "AKIASUIDX544RE5FERGI"
+        auth_password: "BCp03qxaa9SQGUzyfSCKQ/PCvjFpuxmXuERoBA7ivnZ7"
+        require_tls: true
 
 inhibit_rules:
   - source_match:
@@ -27,3 +27,4 @@ inhibit_rules:
     target_match:
       severity: 'warning'
     equal: ['alertname', 'dev', 'instance']
+
