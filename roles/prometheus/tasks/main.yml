@@ -12,3 +12,20 @@
   ansible.builtin.template:
     src: Resource_rules.yml
     dest: /opt/prometheus/Resource_rules.yml
+
+- name: Restart prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+    enabled: yes
+
+- name: copy alert manager configuration file
+  ansible.builtin.template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
+
+- name: Restart alert-manager
+  ansible.builtin.systemd:
+    name: alertmanager
+    state: restarted
+    enabled: yes
