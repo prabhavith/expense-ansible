@@ -73,4 +73,4 @@
     object: frontend-alerts.yml
     src: frontend-alerts.yml
     mode: put
-    tags: s3
+  tags: s3
