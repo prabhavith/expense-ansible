@@ -1,0 +1,9 @@
+- name: copy prometheus config file
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
+
+- name: copy rules
+  ansible.builtin.template:
+    src: Health_rules.yml
+    dest: /opt/prometheus/Health_rules.yml

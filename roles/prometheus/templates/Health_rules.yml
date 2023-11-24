@@ -1,0 +1,10 @@
+groups:
+  - name: Health group
+    rules:
+      - alert: Not reachable
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Server is down
