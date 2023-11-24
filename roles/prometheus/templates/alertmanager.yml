@@ -17,8 +17,8 @@ receivers:
       - to: prabhavith99@gmail.com
         from: prabhavith99@gmail.com
         smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-        auth_username: "AKIASUIDX544RE5FERGI"
-        auth_password: "BCp03qxaa9SQGUzyfSCKQ/PCvjFpuxmXuERoBA7ivnZ7"
+        auth_username: "{{ lookup('amazon.aws.aws_ssm', 'smtp-user', region='us-east-1' ) }}"
+        auth_password: "{{ lookup('amazon.aws.aws_ssm', 'smtp-pswd', region='us-east-1' ) }}"
         require_tls: true
 
 inhibit_rules:
