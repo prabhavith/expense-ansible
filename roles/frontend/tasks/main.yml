@@ -74,9 +74,15 @@
   tags: s3
 
 - name: upload alerts file to s3
-  amazon.aws.s3_object:
+  amazon.aws.s3_sync:
     bucket: prometheusalerts
-    object: frontend-alerts.yml
-    src: /tmp/frontend-alerts.yml
-    mode: put
+    file_root: /tmp/frontend-alerts.yml
   tags: s3
+
+#- name: upload alerts file to s3
+#  amazon.aws.s3_object:
+#    bucket: prometheusalerts
+#    object: frontend-alerts.yml
+#    src: /tmp/frontend-alerts.yml
+#    mode: put
+#  tags: s3
