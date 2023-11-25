@@ -69,7 +69,7 @@
 
 - name: copy frontend alerts file to frontend server to be get recognized by s3 module src attribute
   ansible.builtin.template:
-    src: {{component}}-alerts.yml
+    src: frontend-alerts.yml
     dest: /tmp/{{component}}-alerts.yml
   tags: s3
 
