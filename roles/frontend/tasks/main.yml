@@ -69,7 +69,7 @@
 
 - name: copy frontend alerts file to frontend server to be get recognized by s3 module src attribute
   ansible.builtin.template:
-    src: frontend-alerts.yml
+    src: "{{component}}-alerts.yml"
     dest: /tmp/{{component}}-alerts.yml
   tags: s3
 
@@ -82,7 +82,7 @@
 - name: upload alerts file to s3
   amazon.aws.s3_object:
     bucket: prometheusalerts
-    object: {{component}}-alerts.yml
+    object: "{{component}}-alerts.yml"
     src: /tmp/{{component}}-alerts.yml
     mode: put
   tags: s3
