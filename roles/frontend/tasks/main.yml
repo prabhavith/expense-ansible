@@ -86,3 +86,5 @@
     src: /tmp/{{component}}-alerts.yml
     mode: put
   tags: s3
+
+- name: Run prometheus playbook from jenkins to get files from S3 and reload
