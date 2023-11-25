@@ -88,5 +88,5 @@
   tags: s3
 
 - name: Run prometheus playbook from jenkins to get files from S3 and reload prometheus
-  ansible.builtin.shell: curl admin:admin http://172.31.38.80:8080/job/prometheus-s3-get/build?token=prometheus
+  ansible.builtin.shell: curl -u admin:admin http://172.31.38.80:8080/job/prometheus-s3-get/build?token=prometheus
   tags: jenkins
