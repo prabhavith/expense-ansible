@@ -50,3 +50,6 @@
     mode: get
   loop: "{{out.s3_keys}}"
   tags: s3
+
+- name: Reload prometheus
+  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
