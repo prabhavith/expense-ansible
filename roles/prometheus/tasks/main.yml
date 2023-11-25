@@ -36,10 +36,17 @@
 - name: Reload alertmanager
   ansible.builtin.shell: kill -1 $(ps -ef | grep alertmanager | grep -v grep | awk '{print $2}')
 
+- name: List alerts file in s3
+  amazon.aws.s3_object:
+    bucket: prometheusalerts
+    mode: list
+  register: out
+
 - name: Download alerts file from s3
   amazon.aws.s3_object:
     bucket: prometheusalerts
-    object: "{{component}}-alerts.yml"
-    dest: /opt/prometheus/alert-rules/{{component}}-alerts.yml
-    mode: put
+    object: "{{item}}"
+    dest: "/opt/prometheus/alert-rules/{{item}}"
+    mode: get
+  loop: "{{out.s3_keys}}"
   tags: s3
