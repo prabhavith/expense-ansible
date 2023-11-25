@@ -13,19 +13,33 @@
     src: Resource_rules.yml
     dest: /opt/prometheus/Resource_rules.yml
 
-- name: Restart prometheus
-  ansible.builtin.systemd:
-    name: prometheus
-    state: restarted
-    enabled: yes
+#- name: Restart prometheus
+#  ansible.builtin.systemd:
+#    name: prometheus
+#    state: restarted
+#    enabled: yes
+
+- name: Reload prometheus
+  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
 
 - name: copy alert manager configuration file
   ansible.builtin.template:
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
-- name: Restart alert-manager
-  ansible.builtin.systemd:
-    name: alertmanager
-    state: restarted
-    enabled: yes
+#- name: Restart alert-manager
+#  ansible.builtin.systemd:
+#    name: alertmanager
+#    state: restarted
+#    enabled: yes
+
+- name: Reload alertmanager
+  ansible.builtin.shell: kill -1 $(ps -ef | grep alertmanager | grep -v grep | awk '{print $2}')
+
+- name: Download alerts file from s3
+  amazon.aws.s3_object:
+    bucket: prometheusalerts
+    object: "{{component}}-alerts.yml"
+    dest: /opt/prometheus/alert-rules/{{component}}-alerts.yml
+    mode: put
+  tags: s3
