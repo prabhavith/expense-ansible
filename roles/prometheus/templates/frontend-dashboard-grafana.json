@@ -73,7 +73,7 @@
       "refId": "A"
     }
   ],
-  "title": "Health",
+  "title": "frontend",
   "type": "stat"
 }
 {% endraw %}
