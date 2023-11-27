@@ -3,6 +3,40 @@
   "datasource": {
     "type": "prometheus"
   },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [
+        {
+          "options": {
+            "0": {
+              "index": 1,
+              "text": "DOWN"
+            },
+            "1": {
+              "index": 0,
+              "text": "UP"
+            }
+          },
+          "type": "value"
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "red",
+            "value": null
+          },
+          {
+            "color": "green",
+            "value": 1
+          }
+        ]
+      },
+      "unit": "short"
+    },
+    "overrides": []
+  },
   "gridPos": {
     "h": 8,
     "w": 12,
@@ -32,14 +66,14 @@
         "type": "prometheus"
       },
       "editorMode": "code",
-      "expr": "((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100",
+      "expr": "up",
       "instant": false,
       "legendFormat": "{{job}}",
       "range": true,
       "refId": "A"
     }
   ],
-  "title": "Frontend-RAM",
+  "title": "Health",
   "type": "stat"
 }
 {% endraw %}
