@@ -80,7 +80,7 @@
 - name: create file to store logs
   ansible.builtin.file:
     path: "{{log_file}}"
-    state: present
+    state: touch
 
 - name: copy rsyslog conf file
   ansible.builtin.template:
