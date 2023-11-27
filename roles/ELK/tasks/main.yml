@@ -1,0 +1,26 @@
+- name: copy elasticsearch repo file
+  ansible.builtin.template:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Import gpg key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+- name: Install filebeat
+  ansible.builtin.dnf:
+    name: filebeat
+    state: present
+
+- name: copy filebeat config file
+  ansible.builtin.template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+  register: out
+
+- name: restart filebeat
+  ansible.builtin.service:
+    name: filebeat
+    state: restarted
+  when: out is changed

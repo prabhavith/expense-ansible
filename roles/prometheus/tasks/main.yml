@@ -59,11 +59,14 @@
     src: frontend-dashboard-grafana.json
     dest: /etc/grafana/frontend-board.json
 
-- name: Import Grafana dashboard
-  community.grafana.grafana_dashboard:
-    grafana_url: http://172.31.45.233:3000/
-    grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana-token', region='us-east-1' ) }}"
-    state: present
-    commit_message: Updated by ansible
-    overwrite: yes
-    path: /etc/grafana/frontend-board.json
+- name: Sample
+  hosts: all
+  tasks:
+    - name: Import Grafana dashboard
+      community.grafana.grafana_dashboard:
+        grafana_url: http://172.31.45.233:3000/
+        grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana-token', region='us-east-1' ) }}"
+        state: present
+        commit_message: Updated by ansible
+        overwrite: yes
+        path: /etc/grafana/frontend-board.json

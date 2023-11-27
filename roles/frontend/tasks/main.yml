@@ -67,6 +67,11 @@
     name: nginx
     state: restarted
 
+#install beats
+- name: Install filebeat
+  ansible.builtin.import_role:
+    name: ELK
+
 - name: copy frontend alerts file to frontend server to be get recognized by s3 module src attribute
   ansible.builtin.template:
     src: "{{component}}-alerts.yml"
