@@ -3,56 +3,56 @@
 #    src: prometheus.yml
 #    dest: /opt/prometheus/prometheus.yml
 
-- name: copy rules
-  ansible.builtin.template:
-    src: Health_rules.yml
-    dest: /opt/prometheus/alert-rules/Health_rules.yml
-
-- name: copy rules
-  ansible.builtin.template:
-    src: Resource_rules.yml
-    dest: /opt/prometheus/alert-rules/Resource_rules.yml
-
-#- name: Restart prometheus
-#  ansible.builtin.systemd:
-#    name: prometheus
-#    state: restarted
-#    enabled: yes
-
-- name: Reload prometheus
-  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
-
-- name: copy alert manager configuration file
-  ansible.builtin.template:
-    src: alertmanager.yml
-    dest: /opt/alertmanager/alertmanager.yml
-
-#- name: Restart alert-manager
-#  ansible.builtin.systemd:
-#    name: alertmanager
-#    state: restarted
-#    enabled: yes
-
-- name: Reload alertmanager
-  ansible.builtin.shell: kill -1 $(ps -ef | grep alertmanager | grep -v grep | awk '{print $2}')
-
-- name: List alerts file in s3
-  amazon.aws.s3_object:
-    bucket: prometheusalerts
-    mode: list
-  register: out
-
-- name: Download alerts file from s3
-  amazon.aws.s3_object:
-    bucket: prometheusalerts
-    object: "{{item}}"
-    dest: "/opt/prometheus/alert-rules/{{item}}"
-    mode: get
-  loop: "{{out.s3_keys}}"
-  tags: s3
-
-- name: Reload prometheus
-  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
+#- name: copy rules
+#  ansible.builtin.template:
+#    src: Health_rules.yml
+#    dest: /opt/prometheus/alert-rules/Health_rules.yml
+#
+#- name: copy rules
+#  ansible.builtin.template:
+#    src: Resource_rules.yml
+#    dest: /opt/prometheus/alert-rules/Resource_rules.yml
+#
+##- name: Restart prometheus
+##  ansible.builtin.systemd:
+##    name: prometheus
+##    state: restarted
+##    enabled: yes
+#
+#- name: Reload prometheus
+#  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
+#
+#- name: copy alert manager configuration file
+#  ansible.builtin.template:
+#    src: alertmanager.yml
+#    dest: /opt/alertmanager/alertmanager.yml
+#
+##- name: Restart alert-manager
+##  ansible.builtin.systemd:
+##    name: alertmanager
+##    state: restarted
+##    enabled: yes
+#
+#- name: Reload alertmanager
+#  ansible.builtin.shell: kill -1 $(ps -ef | grep alertmanager | grep -v grep | awk '{print $2}')
+#
+#- name: List alerts file in s3
+#  amazon.aws.s3_object:
+#    bucket: prometheusalerts
+#    mode: list
+#  register: out
+#
+#- name: Download alerts file from s3
+#  amazon.aws.s3_object:
+#    bucket: prometheusalerts
+#    object: "{{item}}"
+#    dest: "/opt/prometheus/alert-rules/{{item}}"
+#    mode: get
+#  loop: "{{out.s3_keys}}"
+#  tags: s3
+#
+#- name: Reload prometheus
+#  ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
 
 - name: Copy grafana dashboard to local
   ansible.builtin.template:
