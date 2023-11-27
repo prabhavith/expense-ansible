@@ -8,11 +8,11 @@
     name: nodejs
     state: present
 
-- name: Remove expense user if exists
-  ansible.builtin.user:
-    name: expense
-    state: absent
-    remove: yes
+#- name: Remove expense user if exists
+#  ansible.builtin.user:
+#    name: expense
+#    state: absent
+#    remove: yes
 
 - name: create expense user
   ansible.builtin.user:
