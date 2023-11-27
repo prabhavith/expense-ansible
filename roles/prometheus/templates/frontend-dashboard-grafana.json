@@ -1,79 +1,87 @@
 {% raw %}
 {
-  "datasource": {
-    "type": "prometheus"
-  },
-  "fieldConfig": {
-    "defaults": {
-      "mappings": [
-        {
-          "options": {
-            "0": {
-              "index": 1,
-              "text": "DOWN"
-            },
-            "1": {
-              "index": 0,
-              "text": "UP"
-            }
-          },
-          "type": "value"
-        }
-      ],
-      "thresholds": {
-        "mode": "absolute",
-        "steps": [
-          {
-            "color": "red",
-            "value": null
-          },
-          {
-            "color": "green",
-            "value": 1
-          }
-        ]
-      },
-      "unit": "short"
-    },
-    "overrides": []
-  },
-  "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 0
-  },
-  "id": 1,
-  "options": {
-    "reduceOptions": {
-      "values": false,
-      "calcs": [
-        "lastNotNull"
-      ],
-      "fields": ""
-    },
-    "orientation": "auto",
-    "textMode": "auto",
-    "wideLayout": true,
-    "colorMode": "background",
-    "graphMode": "none",
-    "justifyMode": "auto"
-  },
-  "pluginVersion": "10.2.2",
-  "targets": [
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "editorMode": "code",
-      "expr": "up",
-      "instant": false,
-      "legendFormat": "{{job}}",
-      "range": true,
-      "refId": "A"
-    }
-  ],
-  "title": "frontend",
-  "type": "stat"
+"type": "stat",
+"title": "Panel Title",
+"gridPos": {
+"x": 0,
+"y": 0,
+"w": 12,
+"h": 8
+},
+"datasource": {
+"uid": "e04fa7e1-f8ef-4228-b56b-f42762bc8116",
+"type": "prometheus"
+},
+"id": 1,
+"targets": [
+{
+"datasource": {
+"type": "prometheus",
+"uid": "e04fa7e1-f8ef-4228-b56b-f42762bc8116"
+},
+"refId": "A",
+"expr": "up",
+"range": true,
+"instant": false,
+"editorMode": "builder",
+"legendFormat": "{{job}}",
+"useBackend": false,
+"disableTextWrap": false,
+"fullMetaSearch": false,
+"includeNullMetadata": true
+}
+],
+"options": {
+"reduceOptions": {
+"values": false,
+"calcs": [
+"lastNotNull"
+],
+"fields": ""
+},
+"orientation": "auto",
+"textMode": "auto",
+"wideLayout": true,
+"colorMode": "background",
+"graphMode": "none",
+"justifyMode": "auto"
+},
+"fieldConfig": {
+"defaults": {
+"mappings": [
+{
+"type": "value",
+"options": {
+"0": {
+"text": "DOWN",
+"color": "red",
+"index": 1
+},
+"1": {
+"text": "UP",
+"color": "green",
+"index": 0
+}
+}
+}
+],
+"thresholds": {
+"mode": "absolute",
+"steps": [
+{
+"color": "red",
+"value": null
+},
+{
+"color": "green",
+"value": 1
+}
+]
+},
+"unit": "short"
+},
+"overrides": []
+},
+"pluginVersion": "10.2.2"
 }
 {% endraw %}
