@@ -1,3 +1,4 @@
+{% raw %}
 {
   "datasource": {
     "type": "prometheus"
@@ -41,3 +42,4 @@
   "title": "Frontend-RAM",
   "type": "stat"
 }
+{% endraw %}
