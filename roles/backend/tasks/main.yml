@@ -79,7 +79,7 @@
 
 - name: create file to store logs
   ansible.builtin.file:
-    path: {{log_file}}
+    path: "{{log_file}}"
     state: present
 
 - name: copy rsyslog conf file
