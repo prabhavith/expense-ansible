@@ -1,0 +1,43 @@
+{
+  "datasource": {
+    "type": "prometheus"
+  },
+  "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+  },
+  "id": 1,
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto"
+  },
+  "pluginVersion": "10.2.2",
+  "targets": [
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "editorMode": "code",
+      "expr": "((node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100",
+      "instant": false,
+      "legendFormat": "{{job}}",
+      "range": true,
+      "refId": "A"
+    }
+  ],
+  "title": "Frontend-RAM",
+  "type": "stat"
+}
