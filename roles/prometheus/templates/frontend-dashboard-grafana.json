@@ -1,7 +1,7 @@
 {% raw %}
 {
 "type": "stat",
-"title": "Front",
+"title": "Panel Title",
 "gridPos": {
 "x": 0,
 "y": 0,
@@ -9,13 +9,15 @@
 "h": 8
 },
 "datasource": {
+"uid": "e04fa7e1-f8ef-4228-b56b-f42762bc8116",
 "type": "prometheus"
 },
 "id": 1,
 "targets": [
 {
 "datasource": {
-"type": "prometheus"
+"type": "prometheus",
+"uid": "e04fa7e1-f8ef-4228-b56b-f42762bc8116"
 },
 "refId": "A",
 "expr": "up",
