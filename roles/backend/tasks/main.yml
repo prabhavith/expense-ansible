@@ -82,3 +82,21 @@
 - name: Install filebeat
   ansible.builtin.import_role:
     name: ELK
+
+- name: copy backend alerts file to backend server to be get recognized by s3 module src attribute
+  ansible.builtin.template:
+    src: "{{component}}-alerts.yml"
+    dest: /tmp/{{component}}-alerts.yml
+  tags: s3
+
+- name: upload alerts file to s3
+  amazon.aws.s3_object:
+    bucket: prometheusalerts
+    object: "{{component}}-alerts.yml"
+    src: /tmp/{{component}}-alerts.yml
+    mode: put
+  tags: s3
+
+- name: Run prometheus playbook from jenkins to get files from S3 and reload prometheus
+  ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins-user', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins-password', region='us-east-1' ) }} http://172.31.38.80:8080/job/prometheus-s3-get/build?token=prometheus
+  tags: jenkins
