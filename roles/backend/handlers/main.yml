@@ -1,0 +1,9 @@
+- name: Restart backend.service
+  ansible.builtin.systemd_service:
+    name: backend
+    state: restarted
+
+- name: Restart rsyslog service
+  ansible.builtin.systemd_service:
+    name: rsyslog
+    state: restarted
