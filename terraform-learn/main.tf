@@ -7,6 +7,7 @@ resource "aws_instance" test {
     Name = "testserver"
   }
 
+
 }
 
 output "Instance-id" {
