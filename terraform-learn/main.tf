@@ -8,3 +8,8 @@ resource "aws_instance" test {
   }
 
 }
+
+output "Instance-id" {
+  description = "instance id of demo server"
+  value = aws_instance.test.cpu_core_count
+}
