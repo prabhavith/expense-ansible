@@ -11,7 +11,7 @@ data "aws_ami" "centos" {
     values = ["hvm"]
   }
 
-  owners = ["180933357369"] # Canonical
+  owners = ["973714476881"] # Canonical
 }
 
 resource "aws_instance" "server1" {
