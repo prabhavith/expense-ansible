@@ -21,8 +21,8 @@ resource "aws_instance" "server1" {
     Name = "server1"
   }
 }
-output "server_out" {
-  value = aws_instance.server1.metadata_options[0]
+output "IPs" {
+  value = "private ip is ${aws_instance.server1.private_ip} and AZ is ${aws_instance.server1.availability_zone}"
 }
 
 #variable "null_test" {}
