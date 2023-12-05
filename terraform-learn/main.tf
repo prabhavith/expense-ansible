@@ -22,6 +22,10 @@ resource "aws_instance" "server1" {
   }
 }
 
+output "server_out" {
+  value = aws_instance.server1.metadata_options.0
+}
+
 #variable "null_test" {}
 #resource "null_resource" test {
 #  triggers = {
