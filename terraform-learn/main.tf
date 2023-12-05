@@ -21,9 +21,9 @@ resource "aws_instance" "server1" {
     Name = "server1"
   }
 }
-
+variable "meta" {}
 output "server_out" {
-  value = aws_instance.server1.metadata_options
+  value = var.meta[2]
 }
 
 #variable "null_test" {}
