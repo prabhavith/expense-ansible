@@ -1,16 +1,39 @@
+data "aws_ami" "centos" {
+  most_recent = true
 
-
-resource "aws_instance" test {
-  ami = "ami-03265a0778a880afb"
-  instance_type = "t2.micro"
-  tags = {
-    Name = "testserver"
+  filter {
+    name   = "name"
+    values = ["Centos-8-DevOps-Practice"]
   }
 
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
+  owners = ["180933357369"] # Canonical
 }
 
-output "Instance-id" {
-  description = "instance id of demo server"
-  value = aws_instance.test.cpu_core_count
+resource "aws_instance" "server1" {
+  ami = data.aws_ami.centos.id
+  instance_type = "t2.micro"
+  tags = {
+    Name = "server1"
+  }
 }
+
+#variable "null_test" {}
+#resource "null_resource" test {
+#  triggers = {
+#    null = var.null_test
+#  }
+#  provisioner "local-exec" {
+#    command = "ipconfig | findstr IPv6"
+#  }
+#}
+#output "null_out" {
+#  value = "Given value is ${null_resource.test.triggers.null}"
+#}
+#output "null_id" {
+#  value = null_resource.test.id
+#}
