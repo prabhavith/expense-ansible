@@ -14,9 +14,13 @@ data "aws_ami" "centos" {
   owners = ["973714476881"] # Canonical
 }
 
+variable "type" {
+  default = "t2.micro"
+}
+
 resource "aws_instance" "server1" {
   ami = data.aws_ami.centos.id
-  instance_type = "t2.micro"
+  instance_type = var.type
   tags = {
     Name = "server1"
   }
