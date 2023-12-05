@@ -21,7 +21,9 @@ resource "aws_instance" "server1" {
     Name = "server1"
   }
 }
-variable "meta" {}
+variable "meta" {
+  default = "xyz"
+}
 output "server_out" {
   value = var.meta[2]
 }
