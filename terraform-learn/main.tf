@@ -22,7 +22,7 @@ resource "aws_instance" "server1" {
   }
 }
 output "IPs" {
-  value = "private ip is ${aws_instance.server1.private_ip} and AZ is ${aws_instance.server1.availability_zone}"
+  value = "private ip is ${aws_instance.server1.private_ip}\n and AZ is ${aws_instance.server1.availability_zone}"
 }
 
 #variable "null_test" {}
