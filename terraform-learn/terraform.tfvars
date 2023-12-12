@@ -1,1 +1,0 @@
-meta = aws_instance.server1.metadata_options
