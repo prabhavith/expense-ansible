@@ -13,3 +13,5 @@ vpc_tags = {
   mail = "test@gmail.com"
   Environment = "prod"
 }
+
+azs = ["us-east-1a" , "us-east-1b"]
