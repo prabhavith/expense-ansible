@@ -5,7 +5,6 @@ resource "aws_vpc" "main" {
 
 
 resource "aws_subnet" "public_subnet" {
-  #count = var.subnets["public"]
   count = length(var.subnets["public"])
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.public[count.index]
@@ -76,7 +75,7 @@ resource "aws_internet_gateway" "main" {
 }
 
 resource "aws_eip" "main" {
-  domain = aws_vpc.main.id
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "main" {
