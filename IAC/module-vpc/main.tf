@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "public_subnet" {
   #count = var.subnets["public"]
-  count = var.subnets.public
+  count = length(var.subnets["public"])
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.public[count.index]
   availability_zone = var.azs[count.index]
@@ -15,7 +15,7 @@ resource "aws_subnet" "public_subnet" {
 
 
 resource "aws_subnet" "web_subnet" {
-  count = var.subnets["web"]
+  count = length(var.subnets["web"])
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.web[count.index]
   availability_zone = var.azs[count.index]
@@ -23,7 +23,7 @@ resource "aws_subnet" "web_subnet" {
   }
 
 resource "aws_subnet" "backend_subnet" {
-  count = var.subnets["backend"]
+  count = length(var.subnets["backend"])
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.backend[count.index]
   availability_zone = var.azs[count.index]
@@ -31,7 +31,7 @@ resource "aws_subnet" "backend_subnet" {
   }
 
 resource "aws_subnet" "db_subnet" {
-  count = var.subnets["db"]
+  count = length(var.subnets["db"])
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.db[count.index]
   availability_zone = var.azs[count.index]
