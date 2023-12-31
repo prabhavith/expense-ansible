@@ -107,3 +107,6 @@ resource "aws_route_table_association" "db-sub-RT" {
   route_table_id = aws_route_table.dbRT.id
   subnet_id = aws_subnet.db_subnet.*.id[count.index]
 }
+
+#create vpc peering connection to workstation instance
+#Add peering connection in route tables
