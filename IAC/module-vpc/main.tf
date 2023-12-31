@@ -5,7 +5,8 @@ resource "aws_vpc" "main" {
 
 
 resource "aws_subnet" "public_subnet" {
-  count = var.subnets["public"]
+  #count = var.subnets["public"]
+  count = var.subnets.public
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnets.public[count.index]
   availability_zone = var.azs[count.index]
