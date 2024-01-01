@@ -143,3 +143,12 @@ resource "aws_route" "default_vpc_route" {
   destination_cidr_block    = var.cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
 }
+
+resource "aws_instance" "server1" {
+  ami           = "ami-03265a0778a880afb"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.web_subnet.*.id[0]
+  tags          = {
+    Name = "server1"
+  }
+}
