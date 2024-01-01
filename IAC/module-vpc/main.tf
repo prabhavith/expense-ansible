@@ -152,3 +152,15 @@ resource "aws_instance" "server1" {
     Name = "server1"
   }
 }
+
+output "sub-web-id1" {
+  value = aws_subnet.web_subnet[0].id
+}
+
+output "sub-web-id2" {
+  value = aws_subnet.web_subnet.*.id[1]
+}
+
+output "sub-web-ex1" {
+  value = aws_subnet.web_subnet.*.id
+}
