@@ -1,10 +1,6 @@
 cidr = "10.10.0.0/16"
 env = "dev"
 subnets = {
-#  public : { sub1 : "10.10.1.0/24" , sub2 : "10.10.2.0/24"}
-#  web : { sub1 : "10.10.3.0/24" , sub2 : "10.10.4.0/24"}
-#  backend : { sub1 : "10.10.5.0/24" , sub2 : "10.10.6.0/24"}
-#  db : { sub1 : "10.10.7.0/24" , sub2 : "10.10.8.0/24"}
   public = ["10.10.1.0/24" , "10.10.2.0/24" ]
   web = ["10.10.3.0/24" , "10.10.4.0/24" ]
   backend = ["10.10.5.0/24" , "10.10.6.0/24" ]
@@ -19,3 +15,8 @@ vpc_tags = {
 }
 
 azs = ["us-east-1a" , "us-east-1b"]
+
+account_id = "180933357369"
+default_vpc_id = "vpc-09d00167426afa5db"
+default_vpc_cidr = "172.31.0.0/16"
+default_vpc_rt = "rtb-0b0ede23ba4b2dd65"

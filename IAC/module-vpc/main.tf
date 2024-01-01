@@ -44,6 +44,11 @@ resource "aws_route_table" "publicRT" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.main.id
   }
+  route {
+    cidr_block = var.default_vpc_cidr
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
+  tags = merge(var.vpc_tags , {Name = "public" }  )
 }
 
 resource "aws_route_table" "webRT" {
@@ -52,6 +57,11 @@ resource "aws_route_table" "webRT" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.main.id
   }
+  route {
+    cidr_block = var.default_vpc_cidr
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
+  tags = merge(var.vpc_tags , {Name = "web" }  )
 }
 
 resource "aws_route_table" "backendRT" {
@@ -60,6 +70,11 @@ resource "aws_route_table" "backendRT" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.main.id
   }
+  route {
+    cidr_block = var.default_vpc_cidr
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
+  tags = merge(var.vpc_tags , {Name = "backend" }  )
 }
 
 resource "aws_route_table" "dbRT" {
@@ -68,6 +83,11 @@ resource "aws_route_table" "dbRT" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.main.id
   }
+  route {
+    cidr_block = var.default_vpc_cidr
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
+  tags = merge(var.vpc_tags , {Name = "db" }  )
 }
 
 resource "aws_internet_gateway" "main" {
@@ -109,4 +129,17 @@ resource "aws_route_table_association" "db-sub-RT" {
 }
 
 #create vpc peering connection to workstation instance
-#Add peering connection in route tables
+
+resource "aws_vpc_peering_connection" "main" {
+  peer_owner_id = var.account_id
+  peer_vpc_id   = var.default_vpc_id
+  vpc_id        = aws_vpc.main.id
+}
+
+#Add peering connection in route tables # added as route in the subnets' respective RTs # added as route in default vpc's RT
+
+resource "aws_route" "default_vpc_route" {
+  route_table_id            = var.default_vpc_rt
+  destination_cidr_block    = var.cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+}
