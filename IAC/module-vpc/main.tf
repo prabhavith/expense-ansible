@@ -134,6 +134,7 @@ resource "aws_vpc_peering_connection" "main" {
   peer_owner_id = var.account_id
   peer_vpc_id   = var.default_vpc_id
   vpc_id        = aws_vpc.main.id
+  auto_accept = true
 }
 
 #Add peering connection in route tables # added as route in the subnets' respective RTs # added as route in default vpc's RT
@@ -142,25 +143,4 @@ resource "aws_route" "default_vpc_route" {
   route_table_id            = var.default_vpc_rt
   destination_cidr_block    = var.cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
-}
-
-resource "aws_instance" "server1" {
-  ami           = "ami-03265a0778a880afb"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.web_subnet.*.id[0]
-  tags          = {
-    Name = "server1"
-  }
-}
-
-output "sub-web-id1" {
-  value = aws_subnet.web_subnet[0].id
-}
-
-output "sub-web-id2" {
-  value = aws_subnet.web_subnet.*.id[1]
-}
-
-output "sub-web-ex1" {
-  value = aws_subnet.web_subnet.*.id
 }
