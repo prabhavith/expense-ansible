@@ -1,5 +1,5 @@
-resource "aws_security_group" "sg-lt" {
-  name        = "sg-lt"
+resource "aws_security_group" "lt-sg" {
+  name        = "lt-SG"
   description = "Allow SG for launch template"
   vpc_id      = var.vpc_id
 
@@ -34,7 +34,7 @@ resource "aws_launch_template" "app-lt" {
   name_prefix   = "${var.env}-${var.backend["component"]}"
   image_id      = data.aws_ami.main.id
   instance_type = var.backend["instance_type"]
-  vpc_security_group_ids = [aws_security_group.sg-lt.id]
+  vpc_security_group_ids = [aws_security_group.lt-sg.id]
   tags = merge(var.app_tags , { Name = "${var.env}-app-lt"  })
 }
 
