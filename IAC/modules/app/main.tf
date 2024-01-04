@@ -52,4 +52,9 @@ resource "aws_autoscaling_group" "bar" {
     propagate_at_launch = true
     value               = "${var.backend["component"]-${var.env}}"
   }
+  tag {
+    key                 = "Environment"
+    propagate_at_launch = True
+    value               = "Dev"
+  }
 }
