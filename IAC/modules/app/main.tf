@@ -38,10 +38,11 @@ resource "aws_launch_template" "app-lt" {
   tags = merge(var.app_tags , { Name = "${var.env}-app-lt"  })
 }
 
-resource "aws_autoscaling_group" "bar" {
+resource "aws_autoscaling_group" "main" {
   desired_capacity   = var.backend["min_count"]
   max_size           = var.backend["max_count"]
   min_size           = var.backend["min_count"]
+  vpc_zone_identifier = [var.app_sub_ids[0], var.app_sub_ids[1]]
 
   launch_template {
     id      = aws_launch_template.app-lt.id

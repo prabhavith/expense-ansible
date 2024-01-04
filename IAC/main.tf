@@ -19,4 +19,5 @@ module "backend" {
   app_tags = var.vpc_tags
   subnets = var.subnets
   bastion_cidr = var.bastion_cidr
+  app_sub_ids = module.vpc.app_sub_ids
 }

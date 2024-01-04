@@ -13,3 +13,4 @@ variable "vpc_cidr" {}
 variable "app_tags" {}
 variable "subnets" {}
 variable "bastion_cidr" {}
+variable "app_sub_ids" {}

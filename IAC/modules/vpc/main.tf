@@ -152,3 +152,6 @@ output "vpc_id" {
 output "vpc_cidr" {
   value = aws_vpc.main.cidr_block
 }
+output "app_sub_ids" {
+  value = aws_subnet.backend_subnet.*.id
+}
