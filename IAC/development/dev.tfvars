@@ -21,4 +21,4 @@ default_vpc_id = "vpc-09d00167426afa5db"
 default_vpc_cidr = "172.31.0.0/16"
 default_vpc_rt = "rtb-0b0ede23ba4b2dd65"
 
-bastion_cidr = "172.31.40.242/32"
+bastion_cidr = ["172.31.40.242/32"]
