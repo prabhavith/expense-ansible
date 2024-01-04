@@ -144,3 +144,11 @@ resource "aws_route" "default_vpc_route" {
   destination_cidr_block    = var.cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
 }
+
+#sending output of vpc_id to parent module, so that it will used in app module's sg-lt security group vpc_id
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+output "vpc_cidr" {
+  value = aws_vpc.main.cidr_block
+}
