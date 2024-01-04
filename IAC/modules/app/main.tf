@@ -50,7 +50,7 @@ resource "aws_autoscaling_group" "bar" {
   tag {
     key                 = "Name"
     propagate_at_launch = true
-    value               = "${var.backend["component"]-${var.env}}"
+    value               = "${var.backend["component"]}-${var.env}"
   }
   tag {
     key                 = "Environment"
