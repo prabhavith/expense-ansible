@@ -3,3 +3,8 @@
   become: yes
   roles:
     - "{{ tier }}"
+
+
+
+#ansible-playbook -i frontend-dev.moderayprime.online, expense.yml -e tier=frontend -e ansible_username=centos -e ansible_password=DevOps321 -e "ansible_python_interpreter=/usr/libexec/platform-python3.6" -t s3
+#ansible-playbook -i backend-dev.moderayprime.online, expense.yml -e "ansible_username=centos" -e "ansible_password=DevOps321" -e MYSQL_ROOT_PASSWORD=ExpenseApp@1 -e tier=backend --tags="schema,start,restart"

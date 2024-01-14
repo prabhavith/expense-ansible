@@ -41,11 +41,13 @@
     bucket: prometheusalerts
     mode: list
   register: out
+  tags: s3-get
 
 - name: Create a alert-rules directory
   ansible.builtin.file:
     path: /opt/prometheus/alert-rules
     state: directory
+  tags: s3-get
 
 - name: Download alerts file from s3
   amazon.aws.s3_object:
@@ -54,10 +56,11 @@
     dest: "/opt/prometheus/alert-rules/{{item}}"
     mode: get
   loop: "{{out.s3_keys}}"
-  tags: s3
+  tags: s3-get
 
 - name: Reload prometheus
   ansible.builtin.shell: kill -1 $(ps -ef | grep prometheus | grep -v grep | awk '{print $2}')
+  tags: s3-get
 
 - name: Copy grafana dashboard to local
   ansible.builtin.template:

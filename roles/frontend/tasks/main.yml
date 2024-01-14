@@ -92,6 +92,9 @@
     mode: put
   tags: s3
 
-- name: Run prometheus playbook from jenkins to get files from S3 and reload prometheus
-  ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins-user', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins-password', region='us-east-1' ) }} http://172.31.38.80:8080/job/prometheus-s3-get/build?token=prometheus
-  tags: jenkins
+#Below lines are temporarily commented for testing purpose, to be uncommented while deploying apps
+#- name: Run prometheus playbook from jenkins to get files from S3 and reload prometheus
+#  ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins-user', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins-password', region='us-east-1' ) }} http://172.31.38.80:8080/job/prometheus-s3-get/build?token=prometheus
+#  tags: jenkins
+#  #Jenkins Build step for above task is;
+#  #ansible-playbook -i ${prometheus-ip}, expense.yml -e tier=prometheus -e ansible_username=centos -e ansible_password=DevOps321 --tags=s3-get

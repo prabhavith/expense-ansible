@@ -1,0 +1,9 @@
+variable "env" {}
+variable "component" {}
+variable "internal" {}
+variable "subnets" {}
+variable "vpc_id" {}
+variable "alb_port" {}
+variable "alb_tags" {}
+variable "tg_arn" {}
+variable "in_cidr" {}

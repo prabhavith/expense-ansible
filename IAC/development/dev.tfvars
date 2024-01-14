@@ -22,3 +22,19 @@ default_vpc_cidr = "172.31.0.0/16"
 default_vpc_rt = "rtb-0b0ede23ba4b2dd65"
 
 bastion_cidr = ["172.31.40.242/32"]
+
+backend = {
+  component     = "backend"
+  min_count     = 1
+  max_count     = 2
+  app_port      = 8080
+  instance_type = "t2.small"
+}
+
+frontend = {
+  component     = "frontend"
+  min_count     = 1
+  max_count     = 2
+  app_port      = 80
+  instance_type = "t2.small"
+}

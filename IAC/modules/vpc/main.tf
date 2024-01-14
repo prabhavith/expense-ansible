@@ -155,3 +155,7 @@ output "vpc_cidr" {
 output "app_sub_ids" {
   value = aws_subnet.backend_subnet.*.id
 }
+
+output "web_sub_ids" {
+  value = aws_subnet.web_subnet.*.id
+}

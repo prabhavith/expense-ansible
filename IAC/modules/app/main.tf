@@ -1,14 +1,14 @@
 resource "aws_security_group" "lt-sg" {
-  name        = "lt-SG"
-  description = "Allow SG for launch template"
+  name        = "${var.component}-${var.env}-lt-SG"
+  description = "${var.component}-${var.env}-lt-SG"
   vpc_id      = var.vpc_id
 
   ingress {
-    description      = "app connection to web"
-    from_port        = var.backend["app_port"]
-    to_port          = var.backend["app_port"]
+    description      = "connection to ${var.component}"
+    from_port        = var.app_port
+    to_port          = var.app_port
     protocol         = "tcp"
-    cidr_blocks      = var.subnets["backend"]
+    cidr_blocks      = var.subnets
   }
 
   ingress {
@@ -27,35 +27,42 @@ resource "aws_security_group" "lt-sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = merge(var.app_tags , {Name = "Dev-SG-LT"})
+  tags = merge(var.app_tags , {Name = "${var.component}-${var.env}-lt-SG"})
 }
 
 resource "aws_launch_template" "app-lt" {
-  name_prefix   = "${var.env}-${var.backend["component"]}"
+  name_prefix   = "${var.env}-${var.component}"
   image_id      = data.aws_ami.main.id
-  instance_type = var.backend["instance_type"]
+  instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.lt-sg.id]
-  tags = merge(var.app_tags , { Name = "${var.env}-app-lt"  })
+  tags = merge(var.app_tags , { Name = "${var.env}-app-lt"})
 }
 
 resource "aws_autoscaling_group" "main" {
-  desired_capacity   = var.backend["min_count"]
-  max_size           = var.backend["max_count"]
-  min_size           = var.backend["min_count"]
-  vpc_zone_identifier = [var.app_sub_ids[0], var.app_sub_ids[1]]
-
+  desired_capacity   = var.min_count
+  max_size           = var.max_count
+  min_size           = var.min_count
+  vpc_zone_identifier = [var.sub_ids[0], var.sub_ids[1]]
   launch_template {
     id      = aws_launch_template.app-lt.id
     version = "$Latest"
   }
+  target_group_arns = [aws_lb_target_group.main.arn]
   tag {
     key                 = "Name"
     propagate_at_launch = true
-    value               = "${var.backend["component"]}-${var.env}"
+    value               = "${var.component}-${var.env}"
   }
   tag {
     key                 = "Environment"
     propagate_at_launch = true
     value               = "Dev"
   }
+}
+
+resource "aws_lb_target_group" "main" {
+  name     = "${var.component}-${var.env}-lb-tg"
+  port     = var.app_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
 }
