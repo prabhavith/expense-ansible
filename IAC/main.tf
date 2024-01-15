@@ -17,7 +17,7 @@ module "backend" {
   vpc_cidr = module.vpc.vpc_cidr
   vpc_id = module.vpc.vpc_id
   app_tags = var.vpc_tags
-  subnets = var.subnets["backend"]
+  subnets = var.subnets["web"]
   bastion_cidr = var.bastion_cidr
   sub_ids = module.vpc.app_sub_ids
   app_port = var.backend["app_port"]
@@ -33,7 +33,7 @@ module "frontend" {
   vpc_cidr = module.vpc.vpc_cidr
   vpc_id = module.vpc.vpc_id
   app_tags = var.vpc_tags
-  subnets = var.subnets["web"]
+  subnets = var.subnets["public"]
   bastion_cidr = var.bastion_cidr
   sub_ids = module.vpc.web_sub_ids
   app_port = var.frontend["app_port"]
