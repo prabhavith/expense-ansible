@@ -50,7 +50,7 @@ module "public-alb" {
   alb_tags        = var.vpc_tags
   component       = "frontend"
   env             = var.env
-  in_cidr         = [0.0.0.0/0]
+  in_cidr         = ["0.0.0.0/0"]
   internal        = "false"
   subnets         = module.vpc.web_sub_ids
   tg_arn          = module.frontend.target_group
