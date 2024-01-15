@@ -35,7 +35,7 @@ resource "aws_iam_role" "main" {
       "Version": "2012-10-17",
       "Statement": [
         {
-          "Sid": "VisualEditor0",
+          "Sid": "VisualEditor1",
           "Effect": "Allow",
           "Action": [
             "ec2:TerminateInstances",
@@ -53,7 +53,7 @@ resource "aws_iam_role" "main" {
       "Version": "2012-10-17",
       "Statement": [
         {
-          "Sid": "VisualEditor0",
+          "Sid": "VisualEditor2",
           "Effect": "Allow",
           "Action": "sns:Publish",
           "Resource": "arn:aws:sns:us-east-1:180933357369:Prometheus-alertmanager"
@@ -68,7 +68,7 @@ resource "aws_iam_role" "main" {
       "Version": "2012-10-17",
       "Statement": [
         {
-          "Sid": "VisualEditor0",
+          "Sid": "VisualEditor3",
           "Effect": "Allow",
           "Action": [
             "s3:GetObject",
@@ -90,7 +90,7 @@ resource "aws_iam_role" "main" {
       "Version": "2012-10-17",
       "Statement": [
         {
-          "Sid": "VisualEditor0",
+          "Sid": "VisualEditor4",
           "Effect": "Allow",
           "Action": [
             "s3:PutObject",
