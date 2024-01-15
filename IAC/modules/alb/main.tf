@@ -25,12 +25,12 @@ resource "aws_security_group" "alb-sg" {
 
 
 resource "aws_lb" "main" {
-  name               = "${var.env}-$}${var.component}-alb"
+  name               = "${var.env}-${var.component}-alb"
   internal           = var.internal
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-sg.id]
   subnets            = var.subnets
-  tags = merge(var.alb_tags , {Name = "${var.env}-$}${var.component}-ALB"})
+  tags = merge(var.alb_tags , {Name = "${var.env}-${var.component}-ALB"})
 }
 
 
