@@ -78,12 +78,6 @@
     dest: /tmp/{{component}}-alerts.yml
   tags: s3
 
-#- name: upload alerts file to s3
-#  community.aws.s3_sync:
-#    bucket: prometheusalerts
-#    file_root: /tmp/frontend-alerts.yml
-#  tags: s3
-
 - name: upload alerts file to s3
   amazon.aws.s3_object:
     bucket: prometheusalerts

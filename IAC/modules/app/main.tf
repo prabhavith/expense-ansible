@@ -35,6 +35,7 @@ resource "aws_launch_template" "app-lt" {
   image_id      = data.aws_ami.main.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.lt-sg.id]
+  user_data = base64encode(templatefile("${path.module}/userdata.sh", { component = var.component }))
   tags = merge(var.app_tags , { Name = "${var.env}-app-lt"})
 }
 
