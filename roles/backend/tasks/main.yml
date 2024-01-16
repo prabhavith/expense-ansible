@@ -40,7 +40,7 @@
 
 # if file is copied and task status is changed, then it notifies handler : Restart backend.service in handlers -> main.yml
 - name: copy backend.service
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
   notify:

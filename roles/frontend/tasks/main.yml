@@ -57,7 +57,7 @@
 
 #copy proxy configuration
 - name: copy proxy configuration
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: frontend.conf
     dest: /etc/nginx/default.d/expense.conf
 
