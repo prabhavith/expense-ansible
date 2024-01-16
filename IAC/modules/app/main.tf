@@ -37,6 +37,9 @@ resource "aws_launch_template" "app-lt" {
   vpc_security_group_ids = [aws_security_group.lt-sg.id]
   user_data = base64encode(templatefile("${path.module}/userdata.sh", { component = var.component }))
   tags = merge(var.app_tags , { Name = "${var.env}-app-lt"})
+  iam_instance_profile {
+    name = aws_iam_instance_profile.main.name
+  }
 }
 
 resource "aws_autoscaling_group" "main" {
