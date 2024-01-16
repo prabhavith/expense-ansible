@@ -159,3 +159,7 @@ output "app_sub_ids" {
 output "web_sub_ids" {
   value = aws_subnet.web_subnet.*.id
 }
+
+output "public_sub_ids" {
+  value = aws_subnet.public_subnet.*.id
+}

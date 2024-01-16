@@ -52,19 +52,19 @@ module "public-alb" {
   env             = var.env
   in_cidr         = ["0.0.0.0/0"]
   internal        = "false"
-  subnets         = module.vpc.web_sub_ids
+  subnets         = module.vpc.public_sub_ids
   tg_arn          = module.frontend.target_group
   vpc_id          = module.vpc.vpc_id
 }
 
-module "web-alb" {
+module "backend-alb" {
   source = "./modules/alb"
 
   alb_port        = 8080
   alb_tags        = var.vpc_tags
   component       = "backend"
   env             = var.env
-  in_cidr         = var.subnets["public"]
+  in_cidr         = var.subnets["web"]
   internal        = "true"
   subnets         = module.vpc.app_sub_ids
   tg_arn          = module.backend.target_group
