@@ -26,6 +26,7 @@ module "backend" {
   min_count = var.backend["min_count"]
   max_count = var.backend["max_count"]
   kms_arn = var.kms_arn
+
 }
 
 module "frontend" {
