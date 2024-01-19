@@ -11,3 +11,4 @@ variable "bastion_cidr" {}
 variable "backend" {}
 variable "frontend" {}
 variable "kms_arn" {}
+variable "db_ip" {}

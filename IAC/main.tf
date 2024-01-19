@@ -74,3 +74,9 @@ module "backend-alb" {
   tg_arn          = module.backend.target_group
   vpc_id          = module.vpc.vpc_id
 }
+
+module "parameters" {
+  source = "./modules/ssm"
+  app_alb = module.backend-alb.app_alb
+  db_ip = var.db_ip
+}

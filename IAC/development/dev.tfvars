@@ -40,3 +40,4 @@ frontend = {
 }
 
 kms_arn = "5a38f8ed-e4fe-4315-bad0-359f4487e811"
+db_ip = "mysql-dev.moderayprime.online"

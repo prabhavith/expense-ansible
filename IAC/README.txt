@@ -29,4 +29,4 @@ Update vpc route tables with peering connection.
 
 Measures:
 If IP changed, Route53 records to be updated
-If load balancer changes, parameter store parameters to be updated to be reflected in frontend.conf, backend.service templates
+If load balancer changes,or port or http, https changes, then parameter store parameters to be updated to be reflected in frontend.conf, backend.service templates
