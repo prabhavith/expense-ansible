@@ -23,3 +23,10 @@ Create ALB and attach Target group to it.
 Create dns records
 Create vpc peering connection between dev and our workstation instance
 Update vpc route tables with peering connection.
+
+
+
+
+Measures:
+If IP changed, Route53 records to be updated
+If load balancer changes, parameter store parameters to be updated to be reflected in frontend.conf, backend.service templates

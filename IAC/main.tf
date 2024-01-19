@@ -25,9 +25,11 @@ module "backend" {
   instance_type = var.backend["instance_type"]
   min_count = var.backend["min_count"]
   max_count = var.backend["max_count"]
+  kms_arn = var.kms_arn
 }
 
 module "frontend" {
+  depends_on = [module.backend]
   source = "./modules/app"
   env = var.env
   vpc_cidr = module.vpc.vpc_cidr
@@ -41,6 +43,7 @@ module "frontend" {
   instance_type = var.frontend["instance_type"]
   min_count = var.frontend["min_count"]
   max_count = var.frontend["max_count"]
+  kms_arn = var.kms_arn
 }
 
 module "public-alb" {

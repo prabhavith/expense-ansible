@@ -10,3 +10,4 @@ variable "default_vpc_rt" {}
 variable "bastion_cidr" {}
 variable "backend" {}
 variable "frontend" {}
+variable "kms_arn" {}

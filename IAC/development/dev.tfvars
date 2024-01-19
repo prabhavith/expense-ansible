@@ -38,3 +38,5 @@ frontend = {
   app_port      = 80
   instance_type = "t2.small"
 }
+
+kms_arn = "5a38f8ed-e4fe-4315-bad0-359f4487e811"

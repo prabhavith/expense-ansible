@@ -10,3 +10,4 @@ variable "component" {}
 variable "instance_type" {}
 variable "min_count" {}
 variable "max_count" {}
+variable "kms_arn" {}

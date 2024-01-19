@@ -40,6 +40,16 @@ resource "aws_launch_template" "app-lt" {
   iam_instance_profile {
     name = aws_iam_instance_profile.main.name
   }
+  block_device_mappings {
+    device_name = "/dev/sda1"
+    ebs {
+      delete_on_termination = "true"
+      encrypted = "true"
+      kms_key_id = var.kms_arn
+      volume_type = "gp3"
+      volume_size = "10"
+    }
+  }
 }
 
 resource "aws_autoscaling_group" "main" {
